@@ -1,0 +1,4 @@
+develop/
+output/
+*.DS_Store
+*.pyc
