@@ -1,5 +1,5 @@
 branches:
-  only: src
+  only: source
 language: python
 python: '2.7'
 sudo: false
