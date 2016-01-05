@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Basic Metas -->
+	<meta charset="utf-8">
+	<title>RPM notes | Captain's Log</title>
+	<meta name="description" content="Here is a collection of my notes on using RPM. Most of these are well documented in man pages and other sources around the web. I’ve collected the ones I’ve used most here as a reference for myself and others ...">
+	<meta name="author" content="Jon Moore">
+	<link rel="author" href=""/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@offdutypirate">
+	<meta name="twitter:domain" content="captainslog.me">
+	<meta name="twitter:site" content="@offdutypirate">
+	<meta property="og:title" content="RPM notes">
+	<meta property="og:description" content="Here is a collection of my notes on using RPM. Most of these are well documented in man pages and other sources around the web. I’ve collected the ones I’ve used most here as a reference for myself and others ...">
+	<meta property="og:image" content="http://offdutypirate.github.io/images/icons/avatar.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://offdutypirate.github.io/2015/11/rpm-notes/">
+
+	<!-- Stylesheets and Web Fonts -->
+	<link href="/theme/style.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,600|Source+Code+Pro" rel="stylesheet" type="text/css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon-180x180.png">
+
+	<link rel="icon" type="image/png" href="/images/icons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-160x160.png" sizes="160x160">
+	<link rel="icon" type="image/png" href="/images/icons/favicon-196x196.png" sizes="196x196">
+
+	<meta name="theme-color" content="#FF8000">
+
+	<meta name="msapplication-TileColor" content="#FF8000">
+	<meta name="msapplication-TileImage" content="/images/icons/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/images/icons/mstile-small.png">
+	<meta name="msapplication-square150x150logo" content="/images/icons/mstile-medium.png">
+	<meta name="msapplication-wide310x150logo" content="/images/icons/mstile-wide.png">
+	<meta name="msapplication-square310x310logo" content="/images/icons/mstile-large.png">
+
+	<!--[if lt IE 9]>
+	<script src="/theme/js/html5shiv.min.js"></script>
+	<script src="/theme/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<aside>
+			<a href="/"><img id="avatar" alt="Site Avatar" src="/images/icons/avatar.png"></a>
+			<div id="name"><a href="/">Captain's Log</a></div>
+			<div id="bio"></div>
+
+			<div id="sidebar-links">
+				<a href="/about/">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/archive/">Archive</a>
+			</div>
+
+			<div id="social">
+				<a href="mailto:mail@captainslog.me" title="Email" class="icon fa fa-envelope"></a>
+				<a href="http://twitter.com/offdutypirate" title="Twitter" class="icon fa fa-twitter"></a>
+				<a href="http://github.com/offdutypirate" title="GitHub" class="icon fa fa-github"></a>
+				<a href="/atom.xml" title="Atom Feed" class="icon fa fa-rss"></a>
+			</div>
+
+			<hr id="sidebar-divider">
+		</aside>
+
+		<article>
+	<h1 class="title"><a href="/2015/11/rpm-notes/" title="Permalink to RPM notes"><span class="caps">RPM</span>&nbsp;notes</a></h1>
+	<time class="date" datetime="2015-11-22 09:20:00-06:00">November 22, 2015</time>
+	<div class="content">
+		<p>Here is a collection of my notes on using <span class="caps">RPM</span>.  Most of these are well documented in man pages and other sources around the web.  I&#8217;ve collected the ones I&#8217;ve used most here as a reference for myself and&nbsp;others.  </p>
+<h1>Query package&nbsp;information</h1>
+<h2>Show package&nbsp;information</h2>
+<p>::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre>$
+rpm -qi yum-cron
+Name        : yum-cron                     Relocations: (not relocatable)
+Version     : 3.2.29                            Vendor: CentOS
+Release     : 69.el6.centos                 Build Date: Fri 24 Jul 2015 05:28:06 AM CDT
+Install Date: Thu 03 Sep 2015 06:14:37 PM CDT      Build Host: c6b9.bsys.dev.centos.org
+Group       : System Environment/Base       Source RPM: yum-3.2.29-69.el6.centos.src.rpm
+Size        : 28204                            License: GPLv2+
+Signature   : RSA/SHA1, Fri 24 Jul 2015 03:43:15 PM CDT, Key ID 0946fca2c105b9de
+Packager    : CentOS BuildSystem &lt;http://bugs.centos.org&gt;
+URL         : http://yum.baseurl.org/
+Summary     : Files needed to run yum updates as a cron job
+Description :
+These are the files needed to run yum updates as a cron job.
+Install this package if you want auto yum updates nightly via cron.
+</pre></div>
+</td></tr></table>
+
+<h2>Show pakage file&nbsp;list</h2>
+<p>This shows all files included in a package.&nbsp;::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rpm -ql yum-cron
+/etc/cron.daily/0yum.cron
+/etc/rc.d/init.d/yum-cron
+/etc/sysconfig/yum-cron
+/etc/yum/yum-daily.yum
+/etc/yum/yum-weekly.yum
+/usr/share/doc/yum-cron-3.2.29
+/usr/share/doc/yum-cron-3.2.29/COPYING
+/usr/share/man/man8/yum-cron.8.gz
+</pre></div>
+</td></tr></table>
+
+<h2>Show a packages configuration&nbsp;files</h2>
+<p>Similar to -q but only lists configuration&nbsp;files</p>
+<p>::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span> rpm -qc yum-cron
+/etc/sysconfig/yum-cron
+/etc/yum/yum-daily.yum
+/etc/yum/yum-weekly.yum
+</pre></div>
+</td></tr></table>
+
+<h2>Show a packages&nbsp;documentation</h2>
+<p>Similar to previous examples, but only shows&nbsp;documentation.</p>
+<p>::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rpm -qd yum-cron
+/usr/share/doc/yum-cron-3.2.29/COPYING
+/usr/share/man/man8/yum-cron.8.gz
+</pre></div>
+</td></tr></table>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2015/12/hammer-notes/" id="next-neighbour">&laquo; Hammer Notes</a>
+	</div>
+
+			<hr>
+		</article>
+
+		<footer>
+			<p></p>
+		</footer>
+	</div>
+
+
+</body>
+</html>
