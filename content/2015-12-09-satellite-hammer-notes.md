@@ -5,7 +5,6 @@ Category: short tips
 Tags: satellite 
 Slug: hammer-notes
 Authors: Jon Moore
-Summary: Short version for index and feeds
 
 Here is a collection of my notes on using hammer cli with Red Hat Satellite.  Most of these things probably work with Katello also, but all of my testing is with Satellite.
 
