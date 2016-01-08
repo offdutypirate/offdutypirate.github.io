@@ -19,6 +19,7 @@ ICONS_PATH = 'images/icons'
 GOOGLE_FONTS = [
     "Raleway:400,600",
     "Source Code Pro",
+    "Rock Salt"
 ]
 
 SOCIAL_ICONS = [
