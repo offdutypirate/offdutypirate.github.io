@@ -7,7 +7,7 @@ Authors: Jon Moore
 
 ## Create the team interface
 
-This creates a new team interface named team0 and sets runner (bond mode) to lacp.  In these examples the name of the interface is team0 - this is entirely for personal tastes.  The connection name can be anything, using team simply makes things easier to follow.
+This creates a new team interface named _team0_ and sets runner (bond mode) to lacp.  In these examples the name of the interface is _team0_ - this is entirely for personal tastes.  The connection name can be anything, using team simply makes things easier to follow.
 
     $ nmcli connection add \
       type team \
