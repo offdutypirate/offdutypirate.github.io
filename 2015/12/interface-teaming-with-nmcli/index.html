@@ -3,18 +3,22 @@
 <head>
 	<!-- Basic Metas -->
 	<meta charset="utf-8">
-	<title>Captain's Log - Articles by Jon Moore</title>
-	<meta name="description" content="">
+	<title>Interface teaming with nmcli | Captain's Log</title>
+	<meta name="description" content="Create the team interface This creates a new team interface named team0 and sets runner (bond mode) to lacp. In these examples the name of the interface is team0 - this is entirely for personal tastes. The connection name can be anything, using ...">
 	<meta name="author" content="Jon Moore">
 	<link rel="author" href=""/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<!-- Open Graph -->
-	<meta property="og:title" content="Captain's Log">
-	<meta property="og:description" content="">
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@offdutypirate">
+	<meta name="twitter:domain" content="captainslog.me">
+	<meta name="twitter:site" content="@offdutypirate">
+	<meta property="og:title" content="Interface teaming with nmcli">
+	<meta property="og:description" content="Create the team interface This creates a new team interface named team0 and sets runner (bond mode) to lacp. In these examples the name of the interface is team0 - this is entirely for personal tastes. The connection name can be anything, using ...">
 	<meta property="og:image" content="http://offdutypirate.github.io/images/icons/avatar.png">
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="http://offdutypirate.github.io">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://offdutypirate.github.io/2015/12/interface-teaming-with-nmcli/">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
@@ -76,22 +80,43 @@
 		</aside>
 
 		<article>
-		<h1 class="title"><a href="2015/12/interface-teaming-with-nmcli/" title="Interface teaming with nmcli">Interface teaming with&nbsp;nmcli</a></h1>
-		<time class="date" datetime="2015-12-28 08:00:00-06:00">December 28, 2015</time>
-		<div class="content summary">
-			<p>Create the team interface This creates a new team interface named team0 and sets runner (bond mode) to lacp. In these examples the name of the interface is team0 - this is entirely for personal tastes. The connection name can be anything, using ...</p>
-		</div>
-<br>		<h1 class="title"><a href="2015/12/hammer-notes/" title="Hammer Notes">Hammer&nbsp;Notes</a></h1>
-		<time class="date" datetime="2015-12-09 08:00:00-06:00">December 09, 2015</time>
-		<div class="content summary">
-			<p>Here is a collection of my notes on using hammer cli with Red Hat Satellite. Most of these things probably work with Katello also, but all of my testing is with Satellite. Add new Product Products are a group of repositories. Content ...</p>
-		</div>
-<br>		<h1 class="title"><a href="2015/11/rpm-notes/" title="RPM notes"><span class="caps">RPM</span>&nbsp;notes</a></h1>
-		<time class="date" datetime="2015-11-22 09:20:00-06:00">November 22, 2015</time>
-		<div class="content summary">
-			<p>Here is a collection of my notes on using RPM. Most of these are well documented in man pages and other sources around the web. I’ve collected the ones I’ve used most here as a reference for myself and others ...</p>
-		</div>
-	<div id="view-archives"><a href="/archive/">Older Posts &raquo;</a></div>
+	<h1 class="title"><a href="/2015/12/interface-teaming-with-nmcli/" title="Permalink to Interface teaming with nmcli">Interface teaming with&nbsp;nmcli</a></h1>
+	<time class="date" datetime="2015-12-28 08:00:00-06:00">December 28, 2015</time>
+	<div class="content">
+		<h2>Create the team&nbsp;interface</h2>
+<p>This creates a new team interface named team0 and sets runner (bond mode) to lacp.  In these examples the name of the interface is team0 - this is entirely for personal tastes.  The connection name can be anything, using team simply makes things easier to&nbsp;follow.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>nmcli connection add <span class="se">\</span>
+  <span class="nb">type </span>team <span class="se">\</span>
+  con-name team0 <span class="se">\</span>
+  ifname team0 <span class="se">\</span>
+  config <span class="err">&#39;</span><span class="o">{</span><span class="s2">&quot;runner&quot;</span>:<span class="o">{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;lacp&quot;</span><span class="o">}}</span>
+</pre></div>
+</td></tr></table>
+
+<h2>Add slave&nbsp;device</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>nmcli connection add <span class="se">\</span>
+  <span class="nb">type </span>team-slave<span class="se">\</span>
+  con-name team0-port1<span class="se">\</span>
+  ifname eno1<span class="se">\</span>
+  master team0
+</pre></div>
+</td></tr></table>
+
+<p>Additional information can be found in the <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/ch-Configure_Network_Bonding.html">Red Hat Enterprise Linux Networking Guide</a>&nbsp;documentation</p>
+	</div>
+
+	<div id="related-articles">
+		<a href="/2015/12/hammer-notes/" id="prev-neighbour">Hammer Notes &raquo;</a>
+	</div>
+
 			<hr>
 		</article>
 

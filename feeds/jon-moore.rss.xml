@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Captain's Log</title><link>http://offdutypirate.github.io/</link><description></description><atom:link href="http://offdutypirate.github.io/feeds/jon-moore.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 31 Dec 2015 08:00:00 -0600</lastBuildDate><item><title>Hammer Notes</title><link>http://offdutypirate.github.io/2015/12/hammer-notes/</link><description>&lt;p&gt;Here is a collection of my notes on using hammer cli with Red Hat Satellite.  Most of these things probably work with Katello also, but all of my testing is with&amp;nbsp;Satellite.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Captain's Log</title><link>http://offdutypirate.github.io/</link><description></description><atom:link href="http://offdutypirate.github.io/feeds/jon-moore.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 31 Dec 2015 08:00:00 -0600</lastBuildDate><item><title>Interface teaming with nmcli</title><link>http://offdutypirate.github.io/2015/12/interface-teaming-with-nmcli/</link><description>&lt;h2&gt;Create the team&amp;nbsp;interface&lt;/h2&gt;
+&lt;p&gt;This creates a new team interface named team0 and sets runner (bond mode) to lacp.  In these examples the name of the interface is team0 - this is entirely for personal tastes.  The connection name can be anything, using team simply makes things easier to&amp;nbsp;follow.&lt;/p&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nmcli connection add &lt;span class="se"&gt;\&lt;/span&gt;
+  &lt;span class="nb"&gt;type &lt;/span&gt;team &lt;span class="se"&gt;\&lt;/span&gt;
+  con-name team0 &lt;span class="se"&gt;\&lt;/span&gt;
+  ifname team0 &lt;span class="se"&gt;\&lt;/span&gt;
+  config &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;runner&amp;quot;&lt;/span&gt;:&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;:&lt;span class="s2"&gt;&amp;quot;lacp&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;}}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h2&gt;Add slave&amp;nbsp;device&lt;/h2&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nmcli connection add &lt;span class="se"&gt;\&lt;/span&gt;
+  &lt;span class="nb"&gt;type &lt;/span&gt;team-slave&lt;span class="se"&gt;\&lt;/span&gt;
+  con-name team0-port1&lt;span class="se"&gt;\&lt;/span&gt;
+  ifname eno1&lt;span class="se"&gt;\&lt;/span&gt;
+  master team0
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Additional information can be found in the &lt;a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/ch-Configure_Network_Bonding.html"&gt;Red Hat Enterprise Linux Networking Guide&lt;/a&gt;&amp;nbsp;documentation&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jon Moore</dc:creator><pubDate>Mon, 28 Dec 2015 08:00:00 -0600</pubDate><guid>tag:offdutypirate.github.io,2015-12-28:2015/12/interface-teaming-with-nmcli/</guid></item><item><title>Hammer Notes</title><link>http://offdutypirate.github.io/2015/12/hammer-notes/</link><description>&lt;p&gt;Here is a collection of my notes on using hammer cli with Red Hat Satellite.  Most of these things probably work with Katello also, but all of my testing is with&amp;nbsp;Satellite.&lt;/p&gt;
 &lt;h3&gt;Add new&amp;nbsp;Product&lt;/h3&gt;
 &lt;p&gt;Products are a group of repositories.  Content Hosts can subscribe to a product to make those repositories&amp;nbsp;available.&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
