@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Captain's Log</title><link>http://offdutypirate.github.io/</link><description></description><atom:link href="http://offdutypirate.github.io/feeds/jon-moore.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 31 Dec 2015 08:00:00 -0600</lastBuildDate><item><title>Interface teaming with nmcli</title><link>http://offdutypirate.github.io/2015/12/interface-teaming-with-nmcli/</link><description>&lt;h2&gt;Create the team&amp;nbsp;interface&lt;/h2&gt;
-&lt;p&gt;This creates a new team interface named team0 and sets runner (bond mode) to lacp.  In these examples the name of the interface is team0 - this is entirely for personal tastes.  The connection name can be anything, using team simply makes things easier to&amp;nbsp;follow.&lt;/p&gt;
+&lt;p&gt;This creates a new team interface named &lt;em&gt;team0&lt;/em&gt; and sets runner (bond mode) to lacp.  In these examples the name of the interface is &lt;em&gt;team0&lt;/em&gt; - this is entirely for personal tastes.  The connection name can be anything, using team simply makes things easier to&amp;nbsp;follow.&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
 3
