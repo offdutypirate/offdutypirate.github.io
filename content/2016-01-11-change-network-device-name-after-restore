@@ -5,7 +5,6 @@ Category: short tips
 Slug: change-interface-name-after-restore
 Authors: Jon Moore
 Summary: Restoring a server using an image based backup product can result in network inteface naming changing.  Here is a short procedure to changes those names back.
-Status: draft
 
 If the MAC address of a physical or virtual network interface changes then the device name will often change as well. This is common when restoring a server from an image based backup.  After the restore, the configuration for the network interfaces will often persist, but are tied to the old hardware address.  This is a pretty easy situtation to clean up.  This post focuses only on CentOS 6.
 
