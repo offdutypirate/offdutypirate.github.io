@@ -3,12 +3,22 @@
 <head>
 	<!-- Basic Metas -->
 	<meta charset="utf-8">
-	<title>Archive | Captain's Log</title>
-	<meta name="description" content="">
+	<title>Change network device name after restore | Captain's Log</title>
+	<meta name="description" content="Restoring a server using an image based backup product can result in network inteface naming changing. Here is a short procedure to changes those names back.">
 	<meta name="author" content="Jon Moore">
 	<link rel="author" href=""/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+	<!-- Twitter Cards and Open Graph -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:creator" content="@offdutypirate">
+	<meta name="twitter:domain" content="captainslog.me">
+	<meta name="twitter:site" content="@offdutypirate">
+	<meta property="og:title" content="Change network device name after restore">
+	<meta property="og:description" content="Restoring a server using an image based backup product can result in network inteface naming changing. Here is a short procedure to changes those names back.">
+	<meta property="og:image" content="http://offdutypirate.github.io/images/icons/avatar.png">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="http://offdutypirate.github.io/2016/01/change-interface-name-after-restore/">
 
 	<!-- Stylesheets and Web Fonts -->
 	<link href="/theme/style.min.css" rel="stylesheet">
@@ -70,20 +80,26 @@
 		</aside>
 
 		<article>
-	<h1 class="title"><a href="/archive/">Archive</a></h1>
+	<h1 class="title"><a href="/2016/01/change-interface-name-after-restore/" title="Permalink to Change network device name after restore">Change network device name after&nbsp;restore</a></h1>
+	<time class="date" datetime="2016-01-11 12:30:00-06:00">January 11, 2016</time>
 	<div class="content">
-		<h2><a href="/2016/">2016</a></h2>
-		<ul>
-			<li><a href="/2016/01/change-interface-name-after-restore/">Change network device name after&nbsp;restore</a> &raquo; January 11, 2016</li>
-		</ul>
-		<h2><a href="/2015/">2015</a></h2>
-		<ul>
-			<li><a href="/2015/12/interface-teaming-with-nmcli/">Interface teaming with&nbsp;nmcli</a> &raquo; December 28, 2015</li>
-			<li><a href="/2015/12/hammer-notes/">Hammer&nbsp;Notes</a> &raquo; December 09, 2015</li>
-			<li><a href="/2015/11/rpm-notes/"><span class="caps">RPM</span>&nbsp;notes</a> &raquo; November 22, 2015</li>
-		</ul>
+		<p>If the <span class="caps">MAC</span> address of a physical or virtual network interface changes then the device name will often change as well. This is common when restoring a server from an image based backup.  After the restore, the configuration for the network interfaces will often persist, but are tied to the old hardware address.  This is a pretty easy situtation to clean up.  This post focuses only on CentOS&nbsp;6.</p>
+<p>If there is only a single network interface the quickest method is to remove the udev rules for network devices and then remove the <span class="caps">HWADDR</span> line from the interface configuration file and&nbsp;reboot.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rm /etc/udev/rules.d/70-persistent-net.rules
+<span class="nv">$ </span>sed -i<span class="s2">&quot;.bak&quot;</span> <span class="s1">&#39;/HWADDR/d&#39;</span> /etc/sysconfig/network-scripts/ifcfg-eth0
+<span class="nv">$ </span>reboot
+</pre></div>
+</td></tr></table>
+
+<p>If there is more then one network interface, then removing the udev rules could potentionlly change the names of all interfaces.  In this case it might be easier to edit the <code>70-persistent-net.rules</code> file and change the interface names in&nbsp;there.</p>
 	</div>
-	<div id="back-to-home"><a href="/">&laquo; Back to Home</a></div>
+
+	<div id="related-articles">
+		<a href="/2015/12/interface-teaming-with-nmcli/" id="prev-neighbour">Interface teaming with nmcli &raquo;</a>
+	</div>
+
 			<hr>
 		</article>
 
