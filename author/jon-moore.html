@@ -79,22 +79,157 @@
 		<h1 class="title"><a href="2016/01/change-interface-name-after-restore/" title="Change network device name after restore">Change network device name after&nbsp;restore</a></h1>
 		<time class="date" datetime="2016-01-11 12:30:00-06:00">January 11, 2016</time>
 		<div class="content summary">
-			<p>Restoring a server using an image based backup product can result in network inteface naming changing. Here is a short procedure to changes those names back.</p>
+			<p><p>If the <span class="caps">MAC</span> address of a physical or virtual network interface changes then the device name will often change as well. This is common when restoring a server from an image based backup.  After the restore, the configuration for the network interfaces will often persist, but are tied to the old hardware address.  This is a pretty easy situtation to clean up.  This post focuses only on CentOS&nbsp;6.</p>
+<p>If there is only a single network interface the quickest method is to remove the udev rules for network devices and then remove the <span class="caps">HWADDR</span> line from the interface configuration file and&nbsp;reboot.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rm /etc/udev/rules.d/70-persistent-net.rules
+<span class="nv">$ </span>sed -i<span class="s2">&quot;.bak&quot;</span> <span class="s1">&#39;/HWADDR/d&#39;</span> /etc/sysconfig/network-scripts/ifcfg-eth0
+<span class="nv">$ </span>reboot
+</pre></div>
+</td></tr></table>
+
+<p>If there is more then one network interface, then removing the udev rules could potentionlly change the names of all interfaces.  In this case it might be easier to edit the <code>70-persistent-net.rules</code> file and change the interface names in&nbsp;there.</p></p>
 		</div>
 <br>		<h1 class="title"><a href="2015/12/interface-teaming-with-nmcli/" title="Interface teaming with nmcli">Interface teaming with&nbsp;nmcli</a></h1>
 		<time class="date" datetime="2015-12-28 08:00:00-06:00">December 28, 2015</time>
 		<div class="content summary">
-			<p>Create the team interface This creates a new team interface named team0 and sets runner (bond mode) to lacp. In these examples the name of the interface is team0 - this is entirely for personal tastes. The connection name can be anything, using ...</p>
+			<p><h2>Create the team&nbsp;interface</h2>
+<p>This creates a new team interface named <em>team0</em> and sets runner (bond mode) to lacp.  In these examples the name of the interface is <em>team0</em> - this is entirely for personal tastes.  The connection name can be anything, using team simply makes things easier to&nbsp;follow.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>nmcli connection add <span class="se">\</span>
+  <span class="nb">type </span>team <span class="se">\</span>
+  con-name team0 <span class="se">\</span>
+  ifname team0 <span class="se">\</span>
+  config <span class="err">&#39;</span><span class="o">{</span><span class="s2">&quot;runner&quot;</span>:<span class="o">{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;lacp&quot;</span><span class="o">}}</span>
+</pre></div>
+</td></tr></table>
+
+<h2>Add slave&nbsp;device</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>nmcli connection add <span class="se">\</span>
+  <span class="nb">type </span>team-slave<span class="se">\</span>
+  con-name team0-port1<span class="se">\</span>
+  ifname eno1<span class="se">\</span>
+  master team0
+</pre></div>
+</td></tr></table>
+
+<p>Additional information can be found in the <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/ch-Configure_Network_Bonding.html">Red Hat Enterprise Linux Networking Guide</a>&nbsp;documentation</p></p>
 		</div>
 <br>		<h1 class="title"><a href="2015/12/hammer-notes/" title="Hammer Notes">Hammer&nbsp;Notes</a></h1>
 		<time class="date" datetime="2015-12-09 08:00:00-06:00">December 09, 2015</time>
 		<div class="content summary">
-			<p>Here is a collection of my notes on using hammer cli with Red Hat Satellite. Most of these things probably work with Katello also, but all of my testing is with Satellite. Add new Product Products are a group of repositories. Content ...</p>
+			<p><p>Here is a collection of my notes on using hammer cli with Red Hat Satellite.  Most of these things probably work with Katello also, but all of my testing is with&nbsp;Satellite.</p>
+<h3>Add new&nbsp;Product</h3>
+<p>Products are a group of repositories.  Content Hosts can subscribe to a product to make those repositories&nbsp;available.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>hammer product create --name<span class="o">=</span><span class="s2">&quot;Product Name&quot;</span> --organization<span class="o">=</span><span class="s2">&quot;Default Organization&quot;</span> --description<span class="o">=</span><span class="s2">&quot;Description about Product&quot;</span>
+<span class="o">[</span>Foreman<span class="o">]</span> Username:
+<span class="o">[</span>Foreman<span class="o">]</span> Password <span class="k">for</span> username:
+Product created
+<span class="err">$</span>
+</pre></div>
+</td></tr></table>
+
+<h3>Content&nbsp;Views</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>hammer content-view list --organization<span class="o">=</span><span class="s2">&quot;Default Organization&quot;</span>
+</pre></div>
+</td></tr></table></p>
 		</div>
 <br>		<h1 class="title"><a href="2015/11/rpm-notes/" title="RPM notes"><span class="caps">RPM</span>&nbsp;notes</a></h1>
 		<time class="date" datetime="2015-11-22 09:20:00-06:00">November 22, 2015</time>
 		<div class="content summary">
-			<p>Here is a collection of my notes on using RPM. Most of these are well documented in man pages and other sources around the web. I’ve collected the ones I’ve used most here as a reference for myself and others ...</p>
+			<p><p>Here is a collection of my notes on using <span class="caps">RPM</span>.  Most of these are well documented in man pages and other sources around the web.  I&#8217;ve collected the ones I&#8217;ve used most here as a reference for myself and&nbsp;others.  </p>
+<h1>Query package&nbsp;information</h1>
+<h2>Show package&nbsp;information</h2>
+<p>::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre>$
+rpm -qi yum-cron
+Name        : yum-cron                     Relocations: (not relocatable)
+Version     : 3.2.29                            Vendor: CentOS
+Release     : 69.el6.centos                 Build Date: Fri 24 Jul 2015 05:28:06 AM CDT
+Install Date: Thu 03 Sep 2015 06:14:37 PM CDT      Build Host: c6b9.bsys.dev.centos.org
+Group       : System Environment/Base       Source RPM: yum-3.2.29-69.el6.centos.src.rpm
+Size        : 28204                            License: GPLv2+
+Signature   : RSA/SHA1, Fri 24 Jul 2015 03:43:15 PM CDT, Key ID 0946fca2c105b9de
+Packager    : CentOS BuildSystem &lt;http://bugs.centos.org&gt;
+URL         : http://yum.baseurl.org/
+Summary     : Files needed to run yum updates as a cron job
+Description :
+These are the files needed to run yum updates as a cron job.
+Install this package if you want auto yum updates nightly via cron.
+</pre></div>
+</td></tr></table>
+
+<h2>Show pakage file&nbsp;list</h2>
+<p>This shows all files included in a package.&nbsp;::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rpm -ql yum-cron
+/etc/cron.daily/0yum.cron
+/etc/rc.d/init.d/yum-cron
+/etc/sysconfig/yum-cron
+/etc/yum/yum-daily.yum
+/etc/yum/yum-weekly.yum
+/usr/share/doc/yum-cron-3.2.29
+/usr/share/doc/yum-cron-3.2.29/COPYING
+/usr/share/man/man8/yum-cron.8.gz
+</pre></div>
+</td></tr></table>
+
+<h2>Show a packages configuration&nbsp;files</h2>
+<p>Similar to -q but only lists configuration&nbsp;files</p>
+<p>::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span> rpm -qc yum-cron
+/etc/sysconfig/yum-cron
+/etc/yum/yum-daily.yum
+/etc/yum/yum-weekly.yum
+</pre></div>
+</td></tr></table>
+
+<h2>Show a packages&nbsp;documentation</h2>
+<p>Similar to previous examples, but only shows&nbsp;documentation.</p>
+<p>::</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rpm -qd yum-cron
+/usr/share/doc/yum-cron-3.2.29/COPYING
+/usr/share/man/man8/yum-cron.8.gz
+</pre></div>
+</td></tr></table></p>
 		</div>
 	<div id="view-archives"><a href="/archive/">Older Posts &raquo;</a></div>
 			<hr>
