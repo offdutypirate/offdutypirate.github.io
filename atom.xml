@@ -90,7 +90,7 @@ Install this package if you want auto yum updates nightly via cron.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;h2&gt;Show pakage file&amp;nbsp;list&lt;/h2&gt;
+&lt;h2&gt;Show package file&amp;nbsp;list&lt;/h2&gt;
 &lt;p&gt;This shows all files included in a package.&amp;nbsp;::&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
