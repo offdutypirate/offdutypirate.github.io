@@ -31,7 +31,7 @@ Show package information
 	These are the files needed to run yum updates as a cron job.
 	Install this package if you want auto yum updates nightly via cron.
 
-Show pakage file list
+Show package file list
 ------------------------
 
 This shows all files included in a package.
