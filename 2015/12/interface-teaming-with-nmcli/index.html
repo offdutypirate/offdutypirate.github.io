@@ -89,8 +89,8 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>nmcli connection add <span class="se">\</span>
-  <span class="nb">type </span>team <span class="se">\</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre>$ nmcli connection add <span class="se">\</span>
+  <span class="nb">type</span> team <span class="se">\</span>
   con-name team0 <span class="se">\</span>
   ifname team0 <span class="se">\</span>
   config <span class="err">&#39;</span><span class="o">{</span><span class="s2">&quot;runner&quot;</span>:<span class="o">{</span><span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;lacp&quot;</span><span class="o">}}</span>
@@ -102,8 +102,8 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>nmcli connection add <span class="se">\</span>
-  <span class="nb">type </span>team-slave<span class="se">\</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre>$ nmcli connection add <span class="se">\</span>
+  <span class="nb">type</span> team-slave<span class="se">\</span>
   con-name team0-port1<span class="se">\</span>
   ifname eno1<span class="se">\</span>
   master team0

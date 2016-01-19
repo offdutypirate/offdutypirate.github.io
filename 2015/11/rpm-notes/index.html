@@ -86,7 +86,6 @@
 		<p>Here is a collection of my notes on using <span class="caps">RPM</span>.  Most of these are well documented in man pages and other sources around the web.  I&#8217;ve collected the ones I&#8217;ve used most here as a reference for myself and&nbsp;others.  </p>
 <h1>Query package&nbsp;information</h1>
 <h2>Show package&nbsp;information</h2>
-<p>::</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -120,7 +119,7 @@ Install this package if you want auto yum updates nightly via cron.
 </td></tr></table>
 
 <h2>Show package file&nbsp;list</h2>
-<p>This shows all files included in a package.&nbsp;::</p>
+<p>This shows all files included in a&nbsp;package.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -129,7 +128,7 @@ Install this package if you want auto yum updates nightly via cron.
 6
 7
 8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rpm -ql yum-cron
+9</pre></div></td><td class="code"><div class="codehilite"><pre>$ rpm -ql yum-cron
 /etc/cron.daily/0yum.cron
 /etc/rc.d/init.d/yum-cron
 /etc/sysconfig/yum-cron
@@ -143,11 +142,10 @@ Install this package if you want auto yum updates nightly via cron.
 
 <h2>Show a packages configuration&nbsp;files</h2>
 <p>Similar to -q but only lists configuration&nbsp;files</p>
-<p>::</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span> rpm -qc yum-cron
+4</pre></div></td><td class="code"><div class="codehilite"><pre>$  rpm -qc yum-cron
 /etc/sysconfig/yum-cron
 /etc/yum/yum-daily.yum
 /etc/yum/yum-weekly.yum
@@ -156,14 +154,38 @@ Install this package if you want auto yum updates nightly via cron.
 
 <h2>Show a packages&nbsp;documentation</h2>
 <p>Similar to previous examples, but only shows&nbsp;documentation.</p>
-<p>::</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nv">$ </span>rpm -qd yum-cron
+3</pre></div></td><td class="code"><div class="codehilite"><pre>$ rpm -qd yum-cron
 /usr/share/doc/yum-cron-3.2.29/COPYING
 /usr/share/man/man8/yum-cron.8.gz
 </pre></div>
 </td></tr></table>
+
+<h2>Show a packages&nbsp;changelog</h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre>$ rpm -q --changelog yum-cron
+* Thu Dec <span class="m">03</span> <span class="m">2015</span> Johnny Hughes &lt;johnny@centos.org&gt;  - 3.4.3-132.el7.centos.0.1
+- Roll in Manual Branding Change to constants.py
+
+* Thu Nov <span class="m">19</span> <span class="m">2015</span> CentOS Sources &lt;bugs@centos.org&gt; - 3.4.3-132.el7.centos
+- CentOS yum config
+-  use the CentOS bug tracker url
+-  retain installonly limit of 5
+-  ensure distrover is always from centos-release
+- Make yum require yum-plugin-fastestmirror
+</pre></div>
+</td></tr></table>
+
+<p>&#8230;</p>
 	</div>
 
 	<div id="related-articles">

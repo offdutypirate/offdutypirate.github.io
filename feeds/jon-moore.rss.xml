@@ -3,9 +3,9 @@
 &lt;p&gt;If there is only a single network interface the quickest method is to remove the udev rules for network devices and then remove the &lt;span class="caps"&gt;HWADDR&lt;/span&gt; line from the interface configuration file and&amp;nbsp;reboot.&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rm /etc/udev/rules.d/70-persistent-net.rules
-&lt;span class="nv"&gt;$ &lt;/span&gt;sed -i&lt;span class="s2"&gt;&amp;quot;.bak&amp;quot;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/HWADDR/d&amp;#39;&lt;/span&gt; /etc/sysconfig/network-scripts/ifcfg-eth0
-&lt;span class="nv"&gt;$ &lt;/span&gt;reboot
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ rm /etc/udev/rules.d/70-persistent-net.rules
+$ sed -i&lt;span class="s2"&gt;&amp;quot;.bak&amp;quot;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/HWADDR/d&amp;#39;&lt;/span&gt; /etc/sysconfig/network-scripts/ifcfg-eth0
+$ reboot
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
@@ -15,8 +15,8 @@
 2
 3
 4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nmcli connection add &lt;span class="se"&gt;\&lt;/span&gt;
-  &lt;span class="nb"&gt;type &lt;/span&gt;team &lt;span class="se"&gt;\&lt;/span&gt;
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ nmcli connection add &lt;span class="se"&gt;\&lt;/span&gt;
+  &lt;span class="nb"&gt;type&lt;/span&gt; team &lt;span class="se"&gt;\&lt;/span&gt;
   con-name team0 &lt;span class="se"&gt;\&lt;/span&gt;
   ifname team0 &lt;span class="se"&gt;\&lt;/span&gt;
   config &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;runner&amp;quot;&lt;/span&gt;:&lt;span class="o"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;:&lt;span class="s2"&gt;&amp;quot;lacp&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;}}&lt;/span&gt;
@@ -28,8 +28,8 @@
 2
 3
 4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;nmcli connection add &lt;span class="se"&gt;\&lt;/span&gt;
-  &lt;span class="nb"&gt;type &lt;/span&gt;team-slave&lt;span class="se"&gt;\&lt;/span&gt;
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ nmcli connection add &lt;span class="se"&gt;\&lt;/span&gt;
+  &lt;span class="nb"&gt;type&lt;/span&gt; team-slave&lt;span class="se"&gt;\&lt;/span&gt;
   con-name team0-port1&lt;span class="se"&gt;\&lt;/span&gt;
   ifname eno1&lt;span class="se"&gt;\&lt;/span&gt;
   master team0
@@ -43,21 +43,20 @@
 2
 3
 4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hammer product create --name&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Product Name&amp;quot;&lt;/span&gt; --organization&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Default Organization&amp;quot;&lt;/span&gt; --description&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Description about Product&amp;quot;&lt;/span&gt;
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ hammer product create --name&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Product Name&amp;quot;&lt;/span&gt; --organization&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Default Organization&amp;quot;&lt;/span&gt; --description&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Description about Product&amp;quot;&lt;/span&gt;
 &lt;span class="o"&gt;[&lt;/span&gt;Foreman&lt;span class="o"&gt;]&lt;/span&gt; Username:
 &lt;span class="o"&gt;[&lt;/span&gt;Foreman&lt;span class="o"&gt;]&lt;/span&gt; Password &lt;span class="k"&gt;for&lt;/span&gt; username:
 Product created
-&lt;span class="err"&gt;$&lt;/span&gt;
+$
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;h3&gt;Content&amp;nbsp;Views&lt;/h3&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;hammer content-view list --organization&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Default Organization&amp;quot;&lt;/span&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ hammer content-view list --organization&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Default Organization&amp;quot;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jon Moore</dc:creator><pubDate>Thu, 31 Dec 2015 08:00:00 -0600</pubDate><guid>tag:offdutypirate.github.io,2015-12-09:2015/12/hammer-notes/</guid><category>satellite</category></item><item><title>RPM notes</title><link>http://offdutypirate.github.io/2015/11/rpm-notes/</link><description>&lt;p&gt;Here is a collection of my notes on using &lt;span class="caps"&gt;RPM&lt;/span&gt;.  Most of these are well documented in man pages and other sources around the web.  I&amp;#8217;ve collected the ones I&amp;#8217;ve used most here as a reference for myself and&amp;nbsp;others.  &lt;/p&gt;
 &lt;h1&gt;Query package&amp;nbsp;information&lt;/h1&gt;
 &lt;h2&gt;Show package&amp;nbsp;information&lt;/h2&gt;
-&lt;p&gt;::&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
@@ -91,7 +90,7 @@ Install this package if you want auto yum updates nightly via cron.
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;h2&gt;Show package file&amp;nbsp;list&lt;/h2&gt;
-&lt;p&gt;This shows all files included in a package.&amp;nbsp;::&lt;/p&gt;
+&lt;p&gt;This shows all files included in a&amp;nbsp;package.&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
 3
@@ -100,7 +99,7 @@ Install this package if you want auto yum updates nightly via cron.
 6
 7
 8
-9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rpm -ql yum-cron
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ rpm -ql yum-cron
 /etc/cron.daily/0yum.cron
 /etc/rc.d/init.d/yum-cron
 /etc/sysconfig/yum-cron
@@ -114,11 +113,10 @@ Install this package if you want auto yum updates nightly via cron.
 
 &lt;h2&gt;Show a packages configuration&amp;nbsp;files&lt;/h2&gt;
 &lt;p&gt;Similar to -q but only lists configuration&amp;nbsp;files&lt;/p&gt;
-&lt;p&gt;::&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
 3
-4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt; rpm -qc yum-cron
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$  rpm -qc yum-cron
 /etc/sysconfig/yum-cron
 /etc/yum/yum-daily.yum
 /etc/yum/yum-weekly.yum
@@ -127,11 +125,35 @@ Install this package if you want auto yum updates nightly via cron.
 
 &lt;h2&gt;Show a packages&amp;nbsp;documentation&lt;/h2&gt;
 &lt;p&gt;Similar to previous examples, but only shows&amp;nbsp;documentation.&lt;/p&gt;
-&lt;p&gt;::&lt;/p&gt;
 &lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
-3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;rpm -qd yum-cron
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ rpm -qd yum-cron
 /usr/share/doc/yum-cron-3.2.29/COPYING
 /usr/share/man/man8/yum-cron.8.gz
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jon Moore</dc:creator><pubDate>Thu, 26 Nov 2015 08:30:00 -0600</pubDate><guid>tag:offdutypirate.github.io,2015-11-22:2015/11/rpm-notes/</guid></item></channel></rss>
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;h2&gt;Show a packages&amp;nbsp;changelog&lt;/h2&gt;
+&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;$ rpm -q --changelog yum-cron
+* Thu Dec &lt;span class="m"&gt;03&lt;/span&gt; &lt;span class="m"&gt;2015&lt;/span&gt; Johnny Hughes &amp;lt;johnny@centos.org&amp;gt;  - 3.4.3-132.el7.centos.0.1
+- Roll in Manual Branding Change to constants.py
+
+* Thu Nov &lt;span class="m"&gt;19&lt;/span&gt; &lt;span class="m"&gt;2015&lt;/span&gt; CentOS Sources &amp;lt;bugs@centos.org&amp;gt; - 3.4.3-132.el7.centos
+- CentOS yum config
+-  use the CentOS bug tracker url
+-  retain installonly limit of 5
+-  ensure distrover is always from centos-release
+- Make yum require yum-plugin-fastestmirror
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;&amp;#8230;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jon Moore</dc:creator><pubDate>Thu, 26 Nov 2015 08:30:00 -0600</pubDate><guid>tag:offdutypirate.github.io,2015-11-22:2015/11/rpm-notes/</guid></item></channel></rss>
