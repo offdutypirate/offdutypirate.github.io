@@ -17,8 +17,8 @@ SIDEBAR_LINKS = [
 ICONS_PATH = 'images/icons'
 
 GOOGLE_FONTS = [
-    "Raleway:400,600",
-    "Source Code Pro",
+    "Roboto:100,400,700",
+    "Roboto Mono:400,500",
     "Rock Salt"
 ]
 
