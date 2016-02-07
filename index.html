@@ -76,7 +76,23 @@
 		</aside>
 
 		<article>
-		<h1 class="title"><a href="2016/01/change-interface-name-after-restore/" title="Change network device name after restore">Change network device name after&nbsp;restore</a></h1>
+		<h1 class="title"><a href="2016/02/fedora-on-beaglebone-black/" title="Fedora on BeagleBone Black">Fedora on BeagleBone&nbsp;Black</a></h1>
+		<time class="date" datetime="2016-02-07 14:05:00-06:00">February 07, 2016</time>
+		<div class="content summary">
+			<p><p>Following the <a href="https://fedoraproject.org/wiki/Architectures/ARM/F23/Installation">Fedora <span class="caps">ARM</span> Installation Guide</a> makes getting the Fedora <span class="caps">ARM</span> image running on the BeagleBone fairly easy.  This is my notes on some extra or not easily documented changes I had to&nbsp;make.</p>
+<ol>
+<li>
+<p>If using the Minimal image and you do not have a serial console it is best to use the fedora-arm-installer and set no root&nbsp;password.</p>
+</li>
+<li>
+<p>After getting the image installed us <code>parted resizepart</code> and <code>resize2fs</code> to grow the root&nbsp;filesystem.</p>
+</li>
+<li>
+<p>After resizing I did follow the steps on the Wiki to install U-Boot to media.  I do not know if this is done by the fedora-arm-installer scripts or&nbsp;not.  </p>
+</li>
+</ol></p>
+		</div>
+<br>		<h1 class="title"><a href="2016/01/change-interface-name-after-restore/" title="Change network device name after restore">Change network device name after&nbsp;restore</a></h1>
 		<time class="date" datetime="2016-01-11 12:30:00-06:00">January 11, 2016</time>
 		<div class="content summary">
 			<p><p>If the <span class="caps">MAC</span> address of a physical or virtual network interface changes then the device name will often change as well. This is common when restoring a server from an image based backup.  After the restore, the configuration for the network interfaces will often persist, but are tied to the old hardware address.  This is a pretty easy situtation to clean up.  This post focuses only on CentOS&nbsp;6.</p>
@@ -145,113 +161,6 @@ $
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>$ hammer content-view list --organization<span class="o">=</span><span class="s2">&quot;Default Organization&quot;</span>
 </pre></div>
 </td></tr></table></p>
-		</div>
-<br>		<h1 class="title"><a href="2015/11/rpm-notes/" title="RPM notes"><span class="caps">RPM</span>&nbsp;notes</a></h1>
-		<time class="date" datetime="2015-11-22 09:20:00-06:00">November 22, 2015</time>
-		<div class="content summary">
-			<p><p>Here is a collection of my notes on using <span class="caps">RPM</span>.  Most of these are well documented in man pages and other sources around the web.  I&#8217;ve collected the ones I&#8217;ve used most here as a reference for myself and&nbsp;others.  </p>
-<h1>Query package&nbsp;information</h1>
-<h2>Show package&nbsp;information</h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="codehilite"><pre>$
-rpm -qi yum-cron
-Name        : yum-cron                     Relocations: (not relocatable)
-Version     : 3.2.29                            Vendor: CentOS
-Release     : 69.el6.centos                 Build Date: Fri 24 Jul 2015 05:28:06 AM CDT
-Install Date: Thu 03 Sep 2015 06:14:37 PM CDT      Build Host: c6b9.bsys.dev.centos.org
-Group       : System Environment/Base       Source RPM: yum-3.2.29-69.el6.centos.src.rpm
-Size        : 28204                            License: GPLv2+
-Signature   : RSA/SHA1, Fri 24 Jul 2015 03:43:15 PM CDT, Key ID 0946fca2c105b9de
-Packager    : CentOS BuildSystem &lt;http://bugs.centos.org&gt;
-URL         : http://yum.baseurl.org/
-Summary     : Files needed to run yum updates as a cron job
-Description :
-These are the files needed to run yum updates as a cron job.
-Install this package if you want auto yum updates nightly via cron.
-</pre></div>
-</td></tr></table>
-
-<h2>Show package file&nbsp;list</h2>
-<p>This shows all files included in a&nbsp;package.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre>$ rpm -ql yum-cron
-/etc/cron.daily/0yum.cron
-/etc/rc.d/init.d/yum-cron
-/etc/sysconfig/yum-cron
-/etc/yum/yum-daily.yum
-/etc/yum/yum-weekly.yum
-/usr/share/doc/yum-cron-3.2.29
-/usr/share/doc/yum-cron-3.2.29/COPYING
-/usr/share/man/man8/yum-cron.8.gz
-</pre></div>
-</td></tr></table>
-
-<h2>Show a packages configuration&nbsp;files</h2>
-<p>Similar to -q but only lists configuration&nbsp;files</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre>$  rpm -qc yum-cron
-/etc/sysconfig/yum-cron
-/etc/yum/yum-daily.yum
-/etc/yum/yum-weekly.yum
-</pre></div>
-</td></tr></table>
-
-<h2>Show a packages&nbsp;documentation</h2>
-<p>Similar to previous examples, but only shows&nbsp;documentation.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre>$ rpm -qd yum-cron
-/usr/share/doc/yum-cron-3.2.29/COPYING
-/usr/share/man/man8/yum-cron.8.gz
-</pre></div>
-</td></tr></table>
-
-<h2>Show a packages&nbsp;changelog</h2>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre>$ rpm -q --changelog yum-cron
-* Thu Dec <span class="m">03</span> <span class="m">2015</span> Johnny Hughes &lt;johnny@centos.org&gt;  - 3.4.3-132.el7.centos.0.1
-- Roll in Manual Branding Change to constants.py
-
-* Thu Nov <span class="m">19</span> <span class="m">2015</span> CentOS Sources &lt;bugs@centos.org&gt; - 3.4.3-132.el7.centos
-- CentOS yum config
--  use the CentOS bug tracker url
--  retain installonly limit of 5
--  ensure distrover is always from centos-release
-- Make yum require yum-plugin-fastestmirror
-</pre></div>
-</td></tr></table>
-
-<p>&#8230;</p></p>
 		</div>
 	<div id="view-archives"><a href="/archive/">Older Posts &raquo;</a></div>
 			<hr>
