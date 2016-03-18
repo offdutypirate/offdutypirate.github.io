@@ -79,7 +79,8 @@
 		<h1 class="title"><a href="2016/03/selinux-permissive-domains/" title="SELinux Permissive Domains">SELinux Permissive&nbsp;Domains</a></h1>
 		<time class="date" datetime="2016-03-18 12:05:00-05:00">March 18, 2016</time>
 		<div class="content summary">
-			<p><p>When SELinux is configured to run in Permissive mode it will only log when an action would be denied using Enforcing.  Using permissive domains a single process and be configured to run in Permissive mode while leaving the rest of the system in&nbsp;Enforcing.</p></p>
+			<p><p>When SELinux is configured to run in Permissive mode it will only log when an action would be denied using Enforcing.  Using permissive domains a single process and be configured to run in Permissive mode while leaving the rest of the system in&nbsp;Enforcing.</p>
+<p>Make a domain permissive with <code>semanage permissive *domain*</code>.  To remove a domain from the permissive list use <code>semanage permissive -d *domain*</code>.</p></p>
 		</div>
 <br>		<h1 class="title"><a href="2016/02/fedora-on-beaglebone-black/" title="Fedora on BeagleBone Black">Fedora on BeagleBone&nbsp;Black</a></h1>
 		<time class="date" datetime="2016-02-07 14:05:00-06:00">February 07, 2016</time>
