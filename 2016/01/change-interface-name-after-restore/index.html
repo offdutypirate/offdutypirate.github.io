@@ -87,7 +87,7 @@
 <p>If there is only a single network interface the quickest method is to remove the udev rules for network devices and then remove the <span class="caps">HWADDR</span> line from the interface configuration file and&nbsp;reboot.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre>$ rm /etc/udev/rules.d/70-persistent-net.rules
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ rm /etc/udev/rules.d/70-persistent-net.rules
 $ sed -i<span class="s2">&quot;.bak&quot;</span> <span class="s1">&#39;/HWADDR/d&#39;</span> /etc/sysconfig/network-scripts/ifcfg-eth0
 $ reboot
 </pre></div>

@@ -76,7 +76,12 @@
 		</aside>
 
 		<article>
-		<h1 class="title"><a href="2016/02/fedora-on-beaglebone-black/" title="Fedora on BeagleBone Black">Fedora on BeagleBone&nbsp;Black</a></h1>
+		<h1 class="title"><a href="2016/03/selinux-permissive-domains/" title="SELinux Permissive Domains">SELinux Permissive&nbsp;Domains</a></h1>
+		<time class="date" datetime="2016-03-18 12:05:00-05:00">March 18, 2016</time>
+		<div class="content summary">
+			<p><p>When SELinux is configured to run in Permissive mode it will only log when an action would be denied using Enforcing.  Using permissive domains a single process and be configured to run in Permissive mode while leaving the rest of the system in&nbsp;Enforcing.</p></p>
+		</div>
+<br>		<h1 class="title"><a href="2016/02/fedora-on-beaglebone-black/" title="Fedora on BeagleBone Black">Fedora on BeagleBone&nbsp;Black</a></h1>
 		<time class="date" datetime="2016-02-07 14:05:00-06:00">February 07, 2016</time>
 		<div class="content summary">
 			<p><p>Following the <a href="https://fedoraproject.org/wiki/Architectures/ARM/F23/Installation">Fedora <span class="caps">ARM</span> Installation Guide</a> makes getting the Fedora <span class="caps">ARM</span> image running on the BeagleBone fairly easy.  This is my notes on some extra or not easily documented changes I had to&nbsp;make.</p>
@@ -99,7 +104,7 @@
 <p>If there is only a single network interface the quickest method is to remove the udev rules for network devices and then remove the <span class="caps">HWADDR</span> line from the interface configuration file and&nbsp;reboot.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre>$ rm /etc/udev/rules.d/70-persistent-net.rules
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ rm /etc/udev/rules.d/70-persistent-net.rules
 $ sed -i<span class="s2">&quot;.bak&quot;</span> <span class="s1">&#39;/HWADDR/d&#39;</span> /etc/sysconfig/network-scripts/ifcfg-eth0
 $ reboot
 </pre></div>
@@ -116,7 +121,7 @@ $ reboot
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre>$ nmcli connection add <span class="se">\</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ nmcli connection add <span class="se">\</span>
   <span class="nb">type</span> team <span class="se">\</span>
   con-name team0 <span class="se">\</span>
   ifname team0 <span class="se">\</span>
@@ -129,7 +134,7 @@ $ reboot
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre>$ nmcli connection add <span class="se">\</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ nmcli connection add <span class="se">\</span>
   <span class="nb">type</span> team-slave<span class="se">\</span>
   con-name team0-port1<span class="se">\</span>
   ifname eno1<span class="se">\</span>
@@ -138,29 +143,6 @@ $ reboot
 </td></tr></table>
 
 <p>Additional information can be found in the <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Networking_Guide/ch-Configure_Network_Bonding.html">Red Hat Enterprise Linux Networking Guide</a>&nbsp;documentation</p></p>
-		</div>
-<br>		<h1 class="title"><a href="2015/12/hammer-notes/" title="Hammer Notes">Hammer&nbsp;Notes</a></h1>
-		<time class="date" datetime="2015-12-09 08:00:00-06:00">December 09, 2015</time>
-		<div class="content summary">
-			<p><p>Here is a collection of my notes on using hammer cli with Red Hat Satellite.  Most of these things probably work with Katello also, but all of my testing is with&nbsp;Satellite.</p>
-<h3>Add new&nbsp;Product</h3>
-<p>Products are a group of repositories.  Content Hosts can subscribe to a product to make those repositories&nbsp;available.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre>$ hammer product create --name<span class="o">=</span><span class="s2">&quot;Product Name&quot;</span> --organization<span class="o">=</span><span class="s2">&quot;Default Organization&quot;</span> --description<span class="o">=</span><span class="s2">&quot;Description about Product&quot;</span>
-<span class="o">[</span>Foreman<span class="o">]</span> Username:
-<span class="o">[</span>Foreman<span class="o">]</span> Password <span class="k">for</span> username:
-Product created
-$
-</pre></div>
-</td></tr></table>
-
-<h3>Content&nbsp;Views</h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>$ hammer content-view list --organization<span class="o">=</span><span class="s2">&quot;Default Organization&quot;</span>
-</pre></div>
-</td></tr></table></p>
 		</div>
 	<div id="view-archives"><a href="/archive/">Older Posts &raquo;</a></div>
 			<hr>
